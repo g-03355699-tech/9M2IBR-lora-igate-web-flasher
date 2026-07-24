@@ -1,5 +1,10 @@
 [
     {
+        "version": "v1.04",
+        "date": "24 Jul 2026",
+        "changelog": "Fixes a reboot/crash when sending a message from the Web UI (manual send or check-in buttons).\n\n- Sending a message used to build the packet, write to the OLED display, and touch the APRS-IS socket directly inside the web server's HTTP handler, which runs on its own background task separate from the device's main loop\n- That raced with the main loop's own use of the same display and network connection, occasionally corrupting state and rebooting the device - a regression introduced in V1.02 when TX message logging (which draws to the display) was added to that same path\n- The send-message handler now just queues the request; the actual send and display update happen from the main loop instead, so they never run at the same time anymore"
+    },
+    {
         "version": "v1.03",
         "date": "24 Jul 2026",
         "changelog": "Boot splash fix, always-on main-screen battery voltage, a new About tab, a beacon symbol code fix, and a permanent (non-editable) firmware-version suffix on the Station Status Text field.\n\n- Boot splash: replaced the stale \"flasher.hamfinity.com\" line with the actual LoRa module, \"eByte E22-400M22S\"\n- Main OLED screen: now shows Int=x.xxV Ext=x.xxV, refreshed every 5s regardless of beacon interval\n- Web config UI: new \"About\" tab with read-only device info (Callsign, Firmware Version, LoRa Module, Hardware ID, Chip, Flash Size, Free Heap, Uptime)\n- Fixed the \"Red Home with L\" beacon symbol code from L- to the correct Lz\n- Station Status Text: the field now stores only your custom text - the firmware version is appended automatically when the status is sent, shown as a static suffix instead of a button"
