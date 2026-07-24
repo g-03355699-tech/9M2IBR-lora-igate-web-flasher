@@ -1,5 +1,10 @@
 [
     {
+        "version": "v1.03",
+        "date": "24 Jul 2026",
+        "changelog": "Boot splash fix, always-on main-screen battery voltage, a new About tab, a beacon symbol code fix, and a permanent (non-editable) firmware-version suffix on the Station Status Text field.\n\n- Boot splash: replaced the stale \"flasher.hamfinity.com\" line with the actual LoRa module, \"eByte E22-400M22S\"\n- Main OLED screen: now shows Int=x.xxV Ext=x.xxV, refreshed every 5s regardless of beacon interval\n- Web config UI: new \"About\" tab with read-only device info (Callsign, Firmware Version, LoRa Module, Hardware ID, Chip, Flash Size, Free Heap, Uptime)\n- Fixed the \"Red Home with L\" beacon symbol code from L- to the correct Lz\n- Station Status Text: the field now stores only your custom text - the firmware version is appended automatically when the status is sent, shown as a static suffix instead of a button"
+    },
+    {
         "version": "v1.02",
         "date": "24 Jul 2026",
         "changelog": "Messages tab TX log + 20-message history, check-in button grid, APRS-IS passcode auto-generate, new beacon symbol, and a firmware-update-only mode for the web flasher.\n\n- Messages tab: raised history cap from 10 to 20; outgoing messages (manual send + check-in buttons) are now logged into the same list, tagged TX (RF) / TX (APRS-IS) / TX (RF+IS)\n- Check-in buttons: 2x2 grid instead of 4 stacked full-width buttons\n- APRS-IS Passcode: added an \"Auto Generate\" button that derives it from the Callsign field, field stays manually editable\n- Beacon Symbol: added \"Red Home with L - Rx/Tx iGate/Digi\"\n- Web Flasher: added a \"Firmware update only\" install mode that keeps existing settings (writes just the app partition, leaves SPIFFS config untouched), alongside the existing full factory install"

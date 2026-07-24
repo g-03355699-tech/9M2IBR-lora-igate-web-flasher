@@ -1,0 +1,16 @@
+{
+    "name": "9M2IBR LoRa APRS iGate - ESP32_9M2IBR_E22_400M22S",
+    "version": "v1.03",
+    "new_install_prompt_erase": true,
+    "builds": [
+        {
+            "chipFamily": "ESP32",
+            "parts": [
+                {
+                    "path": "../../../bins/v1.03/ESP32_9M2IBR_E22_400M22S/web_factory.bin",
+                    "offset": 0
+                }
+            ]
+        }
+    ]
+}
