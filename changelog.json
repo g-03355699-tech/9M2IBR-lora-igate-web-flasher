@@ -1,5 +1,10 @@
 [
     {
+        "version": "v1.02",
+        "date": "24 Jul 2026",
+        "changelog": "Messages tab TX log + 20-message history, check-in button grid, APRS-IS passcode auto-generate, new beacon symbol, and a firmware-update-only mode for the web flasher.\n\n- Messages tab: raised history cap from 10 to 20; outgoing messages (manual send + check-in buttons) are now logged into the same list, tagged TX (RF) / TX (APRS-IS) / TX (RF+IS)\n- Check-in buttons: 2x2 grid instead of 4 stacked full-width buttons\n- APRS-IS Passcode: added an \"Auto Generate\" button that derives it from the Callsign field, field stays manually editable\n- Beacon Symbol: added \"Red Home with L - Rx/Tx iGate/Digi\"\n- Web Flasher: added a \"Firmware update only\" install mode that keeps existing settings (writes just the app partition, leaves SPIFFS config untouched), alongside the existing full factory install"
+    },
+    {
         "version": "v1.01",
         "date": "23 Jul 2026",
         "changelog": "## Highlights\n- Web config UI: renamed \"Received messages\" to \"Messages\" and moved it to right after \"Configuration\" in the navbar.\n- Moved the \"Send Message\" form to the top of the Messages tab (previously on the Configuration tab).\n- Click a callsign in the \"From\" column of the received-messages list to auto-fill it as the reply target and jump to the message box.\n- Added a \"Blink LED on new message\" toggle (default on) to enable/disable the LED notification for new messages.\n\nSee README.md \u2192 Changelog for the complete, itemized history."

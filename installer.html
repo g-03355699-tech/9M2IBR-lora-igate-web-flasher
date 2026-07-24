@@ -37,10 +37,26 @@
                     </div>
                     <p id="versionInfo" class="small text-body-secondary text-start mb-3"></p>
 
-                    <p class="small text-body-secondary">
-                        First flash or factory reset &minus; writes bootloader, partitions and filesystem
-                        together (<code>web_factory.bin</code>). Existing SPIFFS config will be erased.
-                    </p>
+                    <div class="mb-3 text-start">
+                        <label class="form-label d-block">Install mode</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="flashMode" id="modeFactory" value="factory" checked>
+                            <label class="form-check-label" for="modeFactory">
+                                <strong>Full factory install</strong> &minus; first flash or factory reset. Writes
+                                bootloader, partitions and filesystem together.
+                                <span class="text-warning">Erases existing SPIFFS config.</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flashMode" id="modeUpdate" value="update">
+                            <label class="form-check-label" for="modeUpdate">
+                                <strong>Firmware update only</strong> &minus; writes just the app firmware, keeps
+                                your saved settings (callsign, WiFi, beacons, etc). Only use this on a device
+                                already running this tracker's firmware with the same board variant &minus; a
+                                blank or mismatched device still needs a full factory install first.
+                            </label>
+                        </div>
+                    </div>
 
                     <div class="alert alert-warning text-start small">
                         <strong>Disclaimer:</strong> flashing firmware is done at your own risk.
@@ -91,7 +107,9 @@
                 var version = versionSelect.value;
                 var board = boardSelect.value;
                 if (!version || !board) return;
-                installButton.manifest = "manifests/" + version + "/" + board + "/factory.json";
+                var mode = document.querySelector('input[name="flashMode"]:checked').value;
+                var manifestFile = mode === "update" ? "update.json" : "factory.json";
+                installButton.manifest = "manifests/" + version + "/" + board + "/" + manifestFile;
                 var date = releaseDates[version];
                 versionInfo.textContent = date ? ("Selected version: " + version + " — released " + date) : ("Selected version: " + version);
             }
@@ -121,6 +139,9 @@
 
             boardSelect.addEventListener("change", updateManifest);
             versionSelect.addEventListener("change", updateManifest);
+            document.querySelectorAll('input[name="flashMode"]').forEach(function (el) {
+                el.addEventListener("change", updateManifest);
+            });
 
             function escapeHtml(text) {
                 var div = document.createElement("div");
